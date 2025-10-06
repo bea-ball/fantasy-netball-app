@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { Menu } from "lucide-react";
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function SideMenu({ children }) {
+export default function SideMenu({ children }: { children: ReactNode }) {
   const [isMenuOpen, setMenuOpen] = useState(true);
   const pathname = usePathname();
 
