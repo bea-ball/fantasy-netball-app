@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 15, "column": 0}, "map": {"version":3,"sources":["file:///Users/beaball/Documents/Projects/fantasy-netball-app/src/app/my-team/page.tsx"],"sourcesContent":["export default function MyTeamPage() {\n  return \"My Team\";\n}\n"],"names":[],"mappings":";;;;AAAe,SAAS;IACtB,OAAO;AACT","debugId":null}}]
+}
