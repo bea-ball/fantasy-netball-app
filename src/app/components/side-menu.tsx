@@ -22,8 +22,26 @@ export default function SideMenu({ children }) {
 
   return (
     <div className="p-5">
-      <div></div>
-      <div className="flex  items-center">
+      {isMenuOpen}
+
+      <div className=" md:hidden">
+        <div
+          className={clsx(
+            "bg-stone-950 h-screen w-screen absolute top-0 left-0 opacity-0 transition",
+            { "opacity-50": isMenuOpen }
+          )}
+        ></div>
+        <div
+          className={clsx(
+            "bg-white transition h-screen w-50 absolute top-0 left-0 -translate-x-50",
+            { "translate-x-0": isMenuOpen }
+          )}
+        ></div>
+      </div>
+
+      <div
+        className={clsx("flex items-center md:static", { fixed: isMenuOpen })}
+      >
         <Menu
           className={clsx(
             "hover:bg-purple-100 rounded-4xl p-1 transition cursor-pointer",
@@ -39,9 +57,12 @@ export default function SideMenu({ children }) {
       </div>
       <div className="flex">
         <div
-          className={clsx("font-normal flex flex-col p-10 w-fit transition", {
-            "-translate-x-40": !isMenuOpen,
-          })}
+          className={clsx(
+            "font-normal flex-col p-10 w-fit transition flex absolute md:static",
+            {
+              "-translate-x-40": !isMenuOpen,
+            }
+          )}
         >
           {links.map((link) => {
             return (
@@ -59,7 +80,7 @@ export default function SideMenu({ children }) {
         </div>
         <div
           className={clsx("h-fill transition", {
-            "-translate-x-40": !isMenuOpen,
+            "md:-translate-x-40": !isMenuOpen,
           })}
         >
           {children}
