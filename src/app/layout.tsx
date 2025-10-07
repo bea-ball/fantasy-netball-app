@@ -1,8 +1,6 @@
-import { Menu } from "lucide-react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import SideMenu from "./components/side-menu";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -23,9 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${inter.variable} antialiased`}>
-        <div>
-          <SideMenu>{children}</SideMenu>
-        </div>
+        <div>{children}</div>
       </body>
     </html>
   );
