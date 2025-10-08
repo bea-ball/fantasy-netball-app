@@ -44,7 +44,7 @@ export default function LoginPage() {
             ></div>
           </form> */}
           <CredentialSignIn />
-          Don't have an account? <Link href="/sign-up">Sign up</Link>
+          Don&apos;t have an account? <Link href="/sign-up">Sign up</Link>
         </Suspense>
       </div>
     </main>

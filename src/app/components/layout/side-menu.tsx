@@ -91,7 +91,7 @@ export default function SideMenu({ children }: { children: ReactNode }) {
           </div>
 
           <button
-            onClick={() => user.signOut()}
+            onClick={() => user?.signOut()}
             className="flex items-center justify-center gap-2 transition rounded-md bg-purple-50 p-3 text-sm font-medium hover:bg-purple-100 hover:text-purple-600"
           >
             <div>Sign Out</div>
