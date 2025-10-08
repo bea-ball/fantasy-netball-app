@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { StackProvider, StackTheme } from "@stackframe/stack";
+import { stackClientApp } from "../stack/client";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -18,10 +20,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const stackTheme = {
+    light: {
+      primary: "rgb(155, 79, 255)",
+    },
+  };
   return (
     <html lang="en">
       <body className={`${inter.variable} ${inter.variable} antialiased`}>
-        <div>{children}</div>
+        <StackProvider app={stackClientApp}>
+          <StackTheme theme={stackTheme}>
+            <div>{children}</div>
+          </StackTheme>
+        </StackProvider>
       </body>
     </html>
   );

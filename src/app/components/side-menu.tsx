@@ -4,19 +4,15 @@ import clsx from "clsx";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ReactNode, useActionState, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import styles from "../styles/sidemenu.module.css";
-import { signOut } from "next-auth/react";
-import { logout } from "../lib/actions";
+import { UserButton } from "@stackframe/stack";
+import { useUser } from "@stackframe/stack";
 
 export default function SideMenu({ children }: { children: ReactNode }) {
   const [isMenuOpen, setMenuOpen] = useState(true);
   const pathname = usePathname();
-
-  const [errorMessage, formAction, isPending] = useActionState(
-    logout,
-    undefined
-  );
+  const user = useUser();
 
   const links = [
     { name: "My team", href: "/fantasy" },
@@ -27,6 +23,12 @@ export default function SideMenu({ children }: { children: ReactNode }) {
     { name: "Statistics", href: "/fantasy/statistics" },
     { name: "How to play", href: "/fantasy/how-to-play" },
   ];
+
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setMenuOpen(false);
+    }
+  }, [pathname]);
 
   return (
     <div className="p-5 w-screen">
@@ -59,6 +61,7 @@ export default function SideMenu({ children }: { children: ReactNode }) {
         <span className="brand-gradient px-3 font-medium tracking-tighter text-lg">
           Fantasy Netball
         </span>
+        <UserButton />
       </div>
 
       <div className="flex md:h-screen">
@@ -87,11 +90,12 @@ export default function SideMenu({ children }: { children: ReactNode }) {
             })}
           </div>
 
-          <form action={formAction} className="bottom-8 ">
-            <button className="flex grow items-center justify-center gap-2 transition rounded-md bg-purple-50 p-3 text-sm font-medium hover:bg-purple-100 hover:text-purple-600">
-              <div>Sign Out</div>
-            </button>
-          </form>
+          <button
+            onClick={() => user.signOut()}
+            className="flex items-center justify-center gap-2 transition rounded-md bg-purple-50 p-3 text-sm font-medium hover:bg-purple-100 hover:text-purple-600"
+          >
+            <div>Sign Out</div>
+          </button>
         </div>
         <div
           className={clsx("h-fill transition mt-10", {
