@@ -17,6 +17,8 @@
   );
 
   --tw-duration: 0.4s;
+
+  --content-height: calc(100vh - var(--spacing) * 15);
 }
 
 @theme inline {

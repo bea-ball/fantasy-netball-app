@@ -2167,10 +2167,19 @@ async function seedPlayers() {
 //   return insertedRevenue;
 // }
 
+async function getDuplicateId() {
+  const duplicate = await sql`SELECT id, COUNT(id)
+FROM players
+GROUP BY id
+HAVING COUNT(id) > 0;`;
+  console.log(duplicate);
+}
+
 export async function GET() {
   try {
     await sql.begin(() => [
-      seedPlayers(),
+      getDuplicateId(),
+      // seedPlayers(),
       // seedCustomers(),
       // seedInvoices(),
       // seedRevenue(),

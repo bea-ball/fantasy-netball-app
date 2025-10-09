@@ -1,13 +1,12 @@
 "use client";
 
+import { UserButton, useUser } from "@stackframe/stack";
 import clsx from "clsx";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
-import styles from "../styles/sidemenu.module.css";
-import { UserButton } from "@stackframe/stack";
-import { useUser } from "@stackframe/stack";
+import styles from "../../styles/sidemenu.module.css";
 
 export default function SideMenu({ children }: { children: ReactNode }) {
   const [isMenuOpen, setMenuOpen] = useState(true);
@@ -31,7 +30,7 @@ export default function SideMenu({ children }: { children: ReactNode }) {
   }, [pathname]);
 
   return (
-    <div className="p-5 w-screen">
+    <div className="p-5 w-screen h-screen">
       <div className=" md:hidden">
         <div
           className={clsx(
@@ -58,7 +57,7 @@ export default function SideMenu({ children }: { children: ReactNode }) {
           )}
           onClick={() => setMenuOpen(!isMenuOpen)}
         />
-        <span className="brand-gradient px-3 font-medium tracking-tighter text-lg">
+        <span className="brand-gradient px-3 font-medium tracking-tighter text-xl">
           Fantasy Netball
         </span>
         <UserButton />
@@ -98,7 +97,7 @@ export default function SideMenu({ children }: { children: ReactNode }) {
           </button>
         </div>
         <div
-          className={clsx("h-fill transition mt-10", {
+          className={clsx("transition pt-10", {
             "md:-translate-x-50": !isMenuOpen,
           })}
         >
